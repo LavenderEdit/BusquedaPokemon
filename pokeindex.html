@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Poke API</title>
+    <link rel="stylesheet" href="/CSS/pokestyle.css">
+
+</head>
+
+<body>
+
+
+    <!--ESTe ES EL TITULO CON EL BUSCADOR-->
+    <div id="caja1">
+        <h1>ENCUENTRA A TU POKÉMON</h1>
+
+        <form id="formulario">
+            <label for="iddelpokemonaallamar">-Ingresa el número de pokedex del Pokémon a buscar:</label>
+            <input type="number" placeholder="Ingresar aqui" min="1" max="151" class="inputtexts"
+                id="iddelpokemonaallamar"><br>
+
+            <!--LA CHECKBOX (LIBERARLO DEL DIV DE ABAJO)-->
+
+            <!-- <label for="alternativas">-Ingresa el tipo del Pokémon a buscar:</label> -->
+            <br>
+
+            <div class="contenerdor_de_checkbox">
+                <!-- <input type="checkbox" name="alternativas" id="normal" class="elemento_checkbox">
+                <label for="normal" class="elemento_checkbox_alternativas" id="normal_id">Normal</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="fuego" class="elemento_checkbox">
+                <label for="fuego" class="elemento_checkbox_alternativas" id="fuego_id">Fuego</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="agua" class="elemento_checkbox">
+                <label for="agua" class="elemento_checkbox_alternativas" id="agua_id">Agua</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="electrico" class="elemento_checkbox">
+                <label for="electrico" class="elemento_checkbox_alternativas" id="electrico_id">Eléctrico</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="planta" class="elemento_checkbox">
+                <label for="planta" class="elemento_checkbox_alternativas" id="planta_id">Planta</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="hielo" class="elemento_checkbox">
+                <label for="hielo" class="elemento_checkbox_alternativas" id="hielo_id">Hielo</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="lucha" class="elemento_checkbox">
+                <label for="lucha" class="elemento_checkbox_alternativas" id="lucha_id">Lucha</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="veneno" class="elemento_checkbox">
+                <label for="veneno" class="elemento_checkbox_alternativas" id="veneno_id">Veneno</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="tierra" class="elemento_checkbox">
+                <label for="tierra" class="elemento_checkbox_alternativas" id="tierra_id">Tierra</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="volador" class="elemento_checkbox">
+                <label for="volador" class="elemento_checkbox_alternativas" id="volador_id">Volador</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="psiquico" class="elemento_checkbox">
+                <label for="psiquico" class="elemento_checkbox_alternativas" id="psiquico_id">Psíquico</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="bicho" class="elemento_checkbox">
+                <label for="bicho" class="elemento_checkbox_alternativas" id="bicho_id">Bicho</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="roca" class="elemento_checkbox">
+                <label for="roca" class="elemento_checkbox_alternativas" id="roca_id">Roca</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="fantasma" class="elemento_checkbox">
+                <label for="fantasma" class="elemento_checkbox_alternativas" id="fantasma_id">Fantasma</label>
+                <br>
+                <input type="checkbox" name="alternativas" id="dragon" class="elemento_checkbox">
+                <label for="dragon" class="elemento_checkbox_alternativas" id="dragon_id">Dragón</label>
+                <br> -->
+
+            </div>
+
+        </form>
+        <button id="buscarPokemon" class="botondebusqueda">Buscar Pokémon</button>
+    </div>
+
+
+    <!--ESTA ES LA POKEDEX-->
+    <div id="pokedex_box" class="pokedex_caja"> <!-- style="display: none;"  (para desaparecer la caja)-->
+
+        <img src="https://img.freepik.com/vector-gratis/fondo-efecto-zoom-degradado-azul_23-2149762303.jpg" alt="IMG"
+            id="image" class="imagen">
+        <strong id="namepokemon" class="nombrepokemon"> (Nombre) </strong>
+
+        <div class="tipos" id="tipes">
+            <div class="elemento_estilo">
+                <p class="elemento_texto"> (Tipo 1) </p>
+            </div>
+            <div class="elemento_estilo">
+                <p class="elemento_texto"> (Tipo 2) </p>
+            </div>
+        </div>
+
+        <div class="habilidades">
+            <strong class="subtitulo">Movimientos:</strong>
+            <br>
+            <ul id="movimientos">
+            </ul>
+
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="piedepagina">
+            <h2>DERECHOS DE AUTOR</h2>
+            <p class="piedepagina_p">Jair Shica Aguirre</p>
+            <a href="http://www.instagram.com/jairs_07/profilecard/?igsh=cGl0amM3dGdwaGN5" target="_blank"
+                rel="noopener noreferrer" class="miIG">instagram</a>
+        </div>
+    </footer>
+
+</body>
+<script type="module" src="/JS/pokescript.js"></script>
+
+</html>
