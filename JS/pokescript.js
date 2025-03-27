@@ -52,7 +52,7 @@ function renderizarMovimientosPokemon(data) {
   const pokemovimientos = document.getElementById("movimientos");
   pokemovimientos.innerHTML = "";
 
-  data.moves.slice(0, 5).forEach((move) => {
+  data.moves.slice(0, 15).forEach((move) => {
     const movimientoItem = document.createElement("li");
     movimientoItem.textContent = move.move.name;
     pokemovimientos.appendChild(movimientoItem);
