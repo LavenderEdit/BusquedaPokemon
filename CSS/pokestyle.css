@@ -1,328 +1,432 @@
+:root {
+    color-scheme: light dark;
+    --background-gradient: radial-gradient(circle at top, #0c2b5a 0%, #040b1a 55%, #01030a 100%);
+    --surface-color: rgba(6, 13, 34, 0.85);
+    --card-color: rgba(10, 18, 41, 0.92);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #f1f5ff;
+    --text-secondary: rgba(241, 245, 255, 0.75);
+    --accent-color: #ff5350;
+    --focus-ring: 0 0 0 3px rgba(255, 83, 80, 0.35);
+    font-family: "Montserrat", "Segoe UI", sans-serif;
+}
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
 }
 
 body {
-    background-image: url("https://e0.pxfuel.com/wallpapers/890/395/desktop-wallpaper-and-pokeball-pokeball-and-pikachu.jpg");
-    background-size: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-gradient);
+    color: var(--text-primary);
+    line-height: 1.5;
 }
 
-h1 {
-    color: #ffcc00;
-    text-shadow: 2px 2px 0 black;
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.app-header {
+    padding: 3rem 1.5rem 2rem;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
-strong {
-    text-decoration: underline;
+.app-header__content {
+    margin: 0 auto;
+    max-width: 48rem;
+    background: var(--surface-color);
+    padding: 2.5rem 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
 }
 
-h2 {
-    text-align: center;
-    color: white;
+.app-header__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
 }
 
-p {
-    text-align: center;
-    padding-top: 5px;
+.app-header__title {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1rem;
 }
 
-li {
-    list-style: none;
-    font-size: small;
+.app-header__subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
 }
 
-label {
-    color: white;
+.app-header__subtitle span {
+    color: var(--accent-color);
+    font-weight: 700;
 }
 
-#caja1 {
-    border: 5px solid black;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgb(72, 72, 72), rgba(0, 0, 0, 1));
-    opacity: 0.9;
-    padding: 10px;
-    margin-bottom: 30px;
+.app-main {
+    flex: 1;
+    padding: 0 1.5rem 3rem;
+    display: grid;
+    gap: 2.5rem;
+    justify-items: center;
 }
 
-.subtitulo {
-    font-size: 20px;
+.search-panel {
+    width: min(100%, 960px);
+    background: var(--surface-color);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.search-form__label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.search-form__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .inputtexts {
-    text-align: center;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    padding: 3px;
-}
-
-.contenerdor_de_checkbox {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    flex: 1 1 260px;
+    padding: 0.85rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .inputtexts::placeholder {
-    text-align: center;
-    color: black;
+    color: rgba(255, 255, 255, 0.4);
 }
 
-.elemento_checkbox {
-    margin-right: 5px;
-    margin-top: auto;
-    margin-bottom: auto;
-    cursor: pointer;
-}
-
-.elemento_checkbox_alternativas {
-    cursor: pointer;
-    margin-right: 15px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.inputtexts:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: var(--focus-ring);
 }
 
 .botondebusqueda {
-    background-color: #ffcc00;
-    padding: 3px;
-    margin: 10px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 999px;
+    padding: 0.85rem 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     cursor: pointer;
+    background: linear-gradient(135deg, var(--accent-color), #ff8c4c);
+    color: #0a0f1f;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.2s ease;
 }
 
-.pokedex_caja {
-    border: 5px solid gray;
-    background-color: #e30707;
-    width: 25rem;
-    border-radius: 5px;
-    height: auto;
-    margin: auto;
-    justify-content: center;
+.botondebusqueda:hover:not([disabled]) {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(255, 140, 76, 0.4);
+}
+
+.botondebusqueda:active:not([disabled]) {
+    transform: translateY(1px);
+}
+
+.botondebusqueda[disabled] {
+    opacity: 0.5;
+    cursor: progress;
+}
+
+.search-form__hint {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.status-message {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: rgba(255, 83, 80, 0.18);
+    color: #ffd8d7;
+    border: 1px solid rgba(255, 83, 80, 0.45);
+}
+
+.status-message[hidden] {
+    display: none;
+}
+
+.status-message.is-error {
+    font-weight: 600;
+}
+
+.loader {
+    margin-top: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.loader[hidden] {
+    display: none;
+}
+
+.loader__pokeball {
+    width: 2.5rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 6px solid var(--accent-color);
+    border-bottom-color: #ffffff;
+    position: relative;
+    display: inline-block;
+    animation: girar 1s linear infinite;
+}
+
+.loader__pokeball::before,
+.loader__pokeball::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+}
+
+.loader__pokeball::before {
+    top: calc(50% - 3px);
+    width: 100%;
+    height: 6px;
+}
+
+.loader__pokeball::after {
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 4px solid var(--accent-color);
+}
+
+@keyframes girar {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pokedex {
+    width: min(100%, 960px);
     display: grid;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
 }
 
-.nombrepokemon {
-    /* border: 1px solid seagreen; */
-    text-align: center;
-    font-size: 30px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    background-color: rgb(196, 194, 194);
-    border-radius: 5px;
-    padding: 3px;
-    border: 1px solid black;
+.pokedex.is-hidden {
+    display: none;
 }
 
-.imagen {
-    height: 15rem;
-    width: 15rem;
-    margin-top: 15px;
-    border: 5px solid black;
-    background-color: white;
-}
-
-.tipos {
-    /* border: 1px solid hotpink; */
-    margin-bottom: 5px;
+.pokedex__media {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    background-color: rgb(196, 194, 194);
-    border-radius: 5px;
-    padding: 3px;
-    border: 1px solid black;
-}
-
-.elemento_estilo {
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-.elemento_texto {
-    padding: 5px;
-}
-
-.habilidades {
-    border: 1px solid black;
-    background-color: lightgreen;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 5px;
-}
-
-.piedepagina {
-    border: 5px solid black;
-    border-radius: 10px 10px 0 0;
-    background: linear-gradient(to bottom, rgb(8, 8, 96), rgb(0, 0, 1));
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
-.piedepagina_p {
-    color: white;
+.pokedex__image-frame {
+    width: min(320px, 100%);
+    aspect-ratio: 1;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    display: grid;
+    place-items: center;
 }
 
-.miIG {
-    color: white;
-    background: linear-gradient(to top left, rgb(255, 238, 0), rgb(255, 128, 0), rgb(255, 0, 72), rgb(255, 0, 157), rgb(128, 0, 213));
-    margin: 15px;
-    width: 80px;
-    border: 2px solid black;
-    padding: 5px;
+.imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65));
+}
+
+.pokedex__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.pokemon-name {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    letter-spacing: 0.04em;
+}
+
+.type-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.type-pill {
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: var(--type-color);
+    background: color-mix(in srgb, var(--type-color) 75%, rgba(255, 255, 255, 0.12));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #061322;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+.pokemon-description {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.info-section {
+    background: rgba(5, 12, 28, 0.65);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.info-section h3 {
+    font-size: 1.05rem;
+    margin-bottom: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.data-list,
+.stats-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.data-list li,
+.stats-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+
+.data-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.stat-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.stat-bar {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.stat-bar__value {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), #ffcd4d);
+    border-radius: inherit;
+    transition: width 0.3s ease;
+}
+
+.stat-bar__label {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0a0f1f;
+}
+
+.app-footer {
+    margin-top: auto;
+    padding: 2rem 1.5rem 2.5rem;
     text-align: center;
-    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
-.miIG:hover {
-    color: rgb(17, 56, 255);
-    background: linear-gradient(to top left, rgb(255, 238, 0), rgb(255, 128, 0), rgb(255, 0, 72), rgb(255, 0, 157), rgb(128, 0, 213));
+.app-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.app-footer a:hover {
     text-decoration: underline;
 }
 
-#normal_id {
-    background-color: rgb(254, 246, 178);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
+@media (max-width: 768px) {
 
-#fuego_id {
-    background-color: rgb(235, 0, 0);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#agua_id {
-    background-color: rgb(46, 46, 232);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#electrico_id {
-    background-color: rgb(255, 255, 0);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#planta_id {
-    background-color: rgb(8, 181, 8);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#hielo_id {
-    background-color: rgb(145, 208, 233);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#lucha_id {
-    background-color: rgb(242, 40, 4);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#veneno_id {
-    background-color: rgb(176, 4, 176);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#tierra_id {
-    background-color: rgb(175, 114, 40);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#volador_id {
-    background-color: rgb(197, 221, 231);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#psiquico_id {
-    background-color: rgb(213, 113, 213);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#bicho_id {
-    background-color: rgb(2, 108, 2);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#roca_id {
-    background-color: rgb(120, 78, 26);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#fantasma_id {
-    background-color: rgb(110, 44, 110);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-}
-
-#dragon_id {
-    background-color: rgb(21, 21, 244);
-    color: black;
-    padding: 2px;
-    border-radius: 5px;
-
-}
-
-/* ESTE ES EL ADAPTATIVE RESPONSIVE */
-
-/* Estilos para pantallas de escritorio (mayores de 1024px) */
-@media (min-width: 1024px) {
-    body {
-        font-size: 16px;
+    .search-panel,
+    .pokedex {
+        padding: 1.75rem;
     }
 
-    .pokedex_caja {
-        width: 20rem;
+    .pokedex {
+        grid-template-columns: 1fr;
+    }
+
+    .pokedex__image-frame {
+        width: min(280px, 100%);
     }
 }
 
-/* Estilos para tablets (pantallas entre 768px y 1024px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    body {
-        font-size: 14px;
+@media (max-width: 520px) {
+    .search-form__controls {
+        flex-direction: column;
+        align-items: stretch;
     }
 
-    .pokedex_caja {
-        width: 30rem;
-    }
-}
-
-/* Estilos para móviles (pantallas menores de 768px) */
-@media (max-width: 767px) {
-    body {
-        font-size: 12px;
-    }
-
-    .pokedex_caja {
-        width: 90%;
-        margin: auto;
+    .botondebusqueda {
+        width: 100%;
+        text-align: center;
     }
 }
