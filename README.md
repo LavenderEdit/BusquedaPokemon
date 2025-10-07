@@ -1,6 +1,6 @@
 # BusquedaPokemon
 
-> [English version HERE](#)
+> [English version HERE](README.en.md)
 
 ### 🌐 Demo en vivo
 - **Sitio publicado:** [lavenderedit.github.io/BusquedaPokemon](https://lavenderedit.github.io/BusquedaPokemon/)
