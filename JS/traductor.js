@@ -1,11 +1,11 @@
 import { tiposPokemon } from "./tipos.js";
 
 export function traducirTipo(tipo, idioma = "es") {
-  const tipoTraducido = tiposPokemon[tipo.toLowerCase()];
+  const clave = tipo?.toLowerCase?.();
+  const tipoTraducido = clave ? tiposPokemon[clave] : null;
 
   if (tipoTraducido) {
     return tipoTraducido[idioma] || tipoTraducido["es"];
-  } else {
-    throw new Error("Tipo de Pokémon no encontrado");
   }
+  return tipo;
 }
