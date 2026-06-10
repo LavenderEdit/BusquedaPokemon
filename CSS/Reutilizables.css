@@ -1,7 +1,7 @@
 .escondido {
-    display: none;
+    display: none !important;
 }
 
 .negrita {
-    font-weight: bolder;
+    font-weight: 800;
 }
