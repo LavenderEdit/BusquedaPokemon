@@ -4,84 +4,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex - Made By LavenderEdit</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>BusquedaPokemon - Pokédex y Team Lab</title>
     <link rel="icon" type="image/x-icon" href="./IMG/poke-ico.png">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="./CSS/pokestyle.css">
 </head>
 
-
 <body>
-    <header class="app-header">
-        <div class="app-header__content">
-            <p class="app-header__eyebrow">Conectado a la PokéAPI v2</p>
-            <h1 class="app-header__title">Encuentra a tu Pokémon favorito</h1>
-            <p class="app-header__subtitle">Consulta estadísticas oficiales, habilidades y movimientos usando los datos
-                abiertos de <span>PokéAPI</span>.</p>
+    <header class="topbar">
+        <a class="brand" href="#guidePanel" aria-label="BusquedaPokemon">
+            <span class="brand__mark" aria-hidden="true"></span>
+            <span>
+                <strong data-i18n="app.title">BusquedaPokemon</strong>
+                <small data-i18n="app.subtitle">Pokédex avanzada y laboratorio de equipos</small>
+            </span>
+        </a>
+
+        <div class="topbar__controls" aria-label="Ajustes de la aplicación">
+            <label class="control-chip">
+                <span data-i18n="settings.language">Idioma</span>
+                <select id="languageSelect" aria-label="Idioma">
+                    <option value="es">ES</option>
+                    <option value="en">EN</option>
+                </select>
+            </label>
+
+            <label class="control-chip control-chip--wide">
+                <span data-i18n="settings.version">Juego</span>
+                <select id="versionGroupSelect" aria-label="Grupo de versión">
+                    <option value="">Todas las versiones</option>
+                </select>
+            </label>
+
+            <label class="control-chip">
+                <span data-i18n="settings.theme">Tema</span>
+                <select id="themeSelect" aria-label="Tema visual">
+                    <option value="pokedex">Pokédex Pro</option>
+                    <option value="pikachu">Pikachu</option>
+                    <option value="gengar">Gengar</option>
+                    <option value="eevee">Eevee</option>
+                    <option value="auto">Auto Pokémon</option>
+                </select>
+            </label>
+
+            <button id="musicToggle" class="icon-button" type="button" aria-pressed="false">
+                <span data-i18n="settings.music">Música</span>
+            </button>
+
+            <label class="volume-control">
+                <span data-i18n="settings.volume">Volumen</span>
+                <input id="volumeRange" type="range" min="0" max="1" step="0.05" value="0.25">
+            </label>
         </div>
     </header>
 
-    <main class="app-main">
-        <section class="search-panel">
-            <form id="formulario" class="search-form">
-                <label class="search-form__label" for="iddelpokemonaallamar">Busca por nombre o número de
-                    Pokédex</label>
-                <div class="search-form__controls">
-                    <input type="search" placeholder="Ej. pikachu o 25" class="inputtexts" id="iddelpokemonaallamar"
-                        name="pokemon" autocomplete="off" min="1" required>
-                    <button id="buscarPokemon" class="botondebusqueda" type="submit">Buscar Pokémon</button>
+    <main class="workspace">
+        <aside class="search-rail" aria-label="Búsqueda e índice Pokémon">
+            <form id="searchForm" class="search-box">
+                <label for="pokemonSearch">Pokédex</label>
+                <div class="search-box__row">
+                    <input id="pokemonSearch" type="search" name="pokemon" autocomplete="off"
+                        placeholder="Busca Pokémon, movimiento, habilidad..." data-i18n-placeholder="search.placeholder"
+                        required>
+                    <button id="searchButton" type="submit" data-i18n="search.button">Buscar</button>
                 </div>
-                <p class="search-form__hint">Puedes consultar cualquier Pokémon registrado en la API oficial, desde la
-                    Pokédex de Kanto hasta las generaciones más recientes.</p>
             </form>
-            <p id="estadoBusqueda" class="status-message" role="alert" hidden></p>
+
+            <p id="statusMessage" class="status-message" role="status" hidden></p>
+
             <div id="loader" class="loader" hidden aria-hidden="true">
                 <span class="loader__pokeball" aria-hidden="true"></span>
-                <span class="loader__text">Buscando en la PokéAPI…</span>
+                <span data-i18n="search.loading">Consultando PokéAPI...</span>
             </div>
-        </section>
-        <section id="pokedex_box" class="pokedex is-hidden" aria-live="polite">
-            <div class="pokedex__media">
-                <div class="pokedex__image-frame">
-                    <img src="" alt="Ilustración del Pokémon" id="image" class="imagen">
+
+            <section class="quick-panel" aria-label="Accesos rápidos">
+                <h2>Quick picks</h2>
+                <div class="quick-grid">
+                    <button type="button" data-preset="pikachu">Pikachu</button>
+                    <button type="button" data-preset="charizard">Charizard</button>
+                    <button type="button" data-preset="eevee">Eevee</button>
+                    <button type="button" data-preset="garchomp">Garchomp</button>
+                    <button type="button" data-preset="gardevoir">Gardevoir</button>
+                    <button type="button" data-preset="greninja">Greninja</button>
                 </div>
+            </section>
+
+            <section class="index-panel">
+                <div class="section-title">
+                    <h2>Pokémon Index</h2>
+                    <span id="indexCount">0</span>
+                </div>
+                <div id="pokemonIndex" class="pokemon-index" aria-live="polite"></div>
+            </section>
+        </aside>
+
+        <section id="guidePanel" class="guide-panel" aria-live="polite">
+            <div class="empty-state" id="guideEmpty">
+                <h1 data-i18n="guide.emptyTitle">Elige un Pokémon para abrir su guía</h1>
+                <p data-i18n="guide.emptyText">
+                    Verás datos completos, defensas, evolución, sprites y movimientos por juego.
+                </p>
             </div>
-            <div class="pokedex__content">
-                <h2 id="namepokemon" class="pokemon-name">Tu Pokédex digital</h2>
-                <div class="type-list" id="tipes" aria-label="Tipos del Pokémon"></div>
-                <p id="description" class="pokemon-description">Busca un Pokémon para ver sus estadísticas y
-                    habilidades.</p>
 
-                <section class="info-section">
-                    <h3>Datos principales</h3>
-                    <ul id="basicData" class="data-list"></ul>
-                </section>
+            <article id="pokemonGuide" class="pokemon-guide" hidden>
+                <header class="guide-hero">
+                    <div class="guide-hero__art">
+                        <img id="pokemonImage" alt="">
+                    </div>
+                    <div class="guide-hero__content">
+                        <div class="guide-hero__topline">
+                            <span id="pokemonNumber" class="dex-number"></span>
+                            <div id="pokemonTypes" class="type-list"></div>
+                        </div>
+                        <h1 id="pokemonName"></h1>
+                        <p id="pokemonDescription" class="pokemon-description"></p>
+                        <div class="guide-actions">
+                            <button id="addCurrentToTeam" class="primary-action" type="button" data-i18n="team.add">
+                                Agregar al equipo
+                            </button>
+                            <button id="applyPokemonTheme" type="button">Usar tema Pokémon</button>
+                        </div>
+                    </div>
+                </header>
 
-                <section class="info-section">
-                    <h3>Estadísticas base</h3>
-                    <ul id="statsList" class="stats-list"></ul>
-                </section>
+                <nav class="guide-tabs" aria-label="Secciones de guía">
+                    <a href="#summarySection" data-i18n="guide.about">Resumen Pokédex</a>
+                    <a href="#statsSection" data-i18n="guide.stats">Estadísticas base</a>
+                    <a href="#defenseSection" data-i18n="guide.defenses">Defensas de tipo</a>
+                    <a href="#movesSection" data-i18n="guide.moves">Movimientos por juego</a>
+                    <a href="#evolutionSection" data-i18n="guide.evolution">Evolución</a>
+                </nav>
 
-                <section class="info-section">
-                    <h3>Habilidades</h3>
-                    <ul id="abilitiesList" class="data-list"></ul>
-                </section>
+                <div class="guide-grid">
+                    <section id="summarySection" class="guide-section">
+                        <h2 data-i18n="guide.about">Resumen Pokédex</h2>
+                        <dl id="summaryList" class="data-grid"></dl>
+                    </section>
 
-                <section class="info-section">
-                    <h3>Movimientos destacados</h3>
-                    <ul id="movimientos" class="data-list"></ul>
-                </section>
-            </div>
+                    <section class="guide-section">
+                        <h2 data-i18n="guide.training">Entrenamiento</h2>
+                        <dl id="trainingList" class="data-grid"></dl>
+                    </section>
+
+                    <section class="guide-section">
+                        <h2 data-i18n="guide.breeding">Crianza</h2>
+                        <dl id="breedingList" class="data-grid"></dl>
+                    </section>
+
+                    <section id="statsSection" class="guide-section guide-section--wide">
+                        <h2 data-i18n="guide.stats">Estadísticas base</h2>
+                        <div id="statsTable" class="stats-table"></div>
+                    </section>
+
+                    <section id="defenseSection" class="guide-section guide-section--wide">
+                        <h2 data-i18n="guide.defenses">Defensas de tipo</h2>
+                        <div id="defenseGrid" class="defense-grid"></div>
+                    </section>
+
+                    <section id="evolutionSection" class="guide-section guide-section--wide">
+                        <h2 data-i18n="guide.evolution">Evolución</h2>
+                        <div id="evolutionChain" class="evolution-chain"></div>
+                    </section>
+
+                    <section id="movesSection" class="guide-section guide-section--wide">
+                        <div class="section-title">
+                            <h2 data-i18n="guide.moves">Movimientos por juego</h2>
+                            <span id="moveVersionLabel"></span>
+                        </div>
+                        <div id="movesTables" class="moves-layout"></div>
+                    </section>
+
+                    <section class="guide-section guide-section--wide">
+                        <h2 data-i18n="guide.forms">Formas y sprites</h2>
+                        <div id="spriteGallery" class="sprite-gallery"></div>
+                    </section>
+                </div>
+            </article>
         </section>
+
+        <aside class="team-lab" aria-label="Constructor de equipos">
+            <div class="team-header">
+                <label for="teamName" data-i18n="team.title">Laboratorio de equipo</label>
+                <input id="teamName" type="text" value="Mi equipo competitivo" autocomplete="off">
+            </div>
+
+            <div id="teamSlots" class="team-slots"></div>
+
+            <section class="analysis-panel">
+                <div class="section-title">
+                    <h2 data-i18n="team.analysis">Análisis competitivo</h2>
+                    <span id="teamScore">0/6</span>
+                </div>
+                <div id="teamAnalysis" class="team-analysis"></div>
+            </section>
+
+            <section class="export-panel">
+                <div class="export-actions">
+                    <button id="exportJson" type="button" data-i18n="team.export">Exportar</button>
+                    <button id="exportShowdown" type="button">Showdown</button>
+                    <button id="importTeam" type="button" data-i18n="team.import">Importar</button>
+                    <button id="clearTeam" type="button" data-i18n="team.clear">Vaciar equipo</button>
+                </div>
+                <textarea id="teamTextArea" rows="7" spellcheck="false"
+                    placeholder="Export/import JSON o texto del equipo"></textarea>
+            </section>
+        </aside>
     </main>
+
     <footer class="app-footer">
-        <p>Datos obtenidos de <a href="https://pokeapi.co/docs/v2" target="_blank" rel="noopener noreferrer">PokéAPI
-                v2</a>.</p>
-        <p>Desarrollado por LavenderEdit(Joan Lavender).</p>
+        <span>Datos: <a href="https://pokeapi.co/docs/v2" target="_blank" rel="noopener noreferrer">PokéAPI v2</a>.</span>
+        <span>Inspirado por guías Pokédex y team planners. Desarrollado por LavenderEdit / Joan Lavender.</span>
     </footer>
 
     <script type="module" src="./JS/pokescript.js"></script>
